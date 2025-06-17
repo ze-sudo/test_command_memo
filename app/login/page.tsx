@@ -2,9 +2,20 @@
 
 import { useState, useEffect } from "react";
 import { auth } from "../../firebase/client";
-import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged, User } from "firebase/auth";
+import {
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged,
+  User
+} from "firebase/auth";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+
+// Firebaseのエラーオブジェクトの基本的な型を定義
+interface FirebaseError extends Error {
+  code?: string;
+}
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -25,8 +36,15 @@ export default function LoginPage() {
     try {
       await signInWithEmailAndPassword(auth, email, pw);
       setMsg("ログイン成功");
-    } catch (e: any) {
-      setMsg(`エラー: ${e.message}`);
+    } catch (e) { // any を削除
+      const error = e as FirebaseError; // 型アサーションを使用
+      if (error.code && error.message) {
+        setMsg(`エラー: ${error.message} (コード: ${error.code})`);
+      } else if (error instanceof Error) {
+        setMsg(`エラー: ${error.message}`);
+      } else {
+        setMsg("不明なエラーが発生しました。");
+      }
     }
   };
 
@@ -34,8 +52,15 @@ export default function LoginPage() {
     try {
       await createUserWithEmailAndPassword(auth, email, pw);
       setMsg("新規登録成功");
-    } catch (e: any) {
-      setMsg(`エラー: ${e.message}`);
+    } catch (e) { // any を削除
+      const error = e as FirebaseError; // 型アサーションを使用
+      if (error.code && error.message) {
+        setMsg(`エラー: ${error.message} (コード: ${error.code})`);
+      } else if (error instanceof Error) {
+        setMsg(`エラー: ${error.message}`);
+      } else {
+        setMsg("不明なエラーが発生しました。");
+      }
     }
   };
 

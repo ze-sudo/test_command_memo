@@ -16,27 +16,27 @@ export default function HowTo() {
         <h4>● メモの追加</h4>
         <ul>
           <li>
-            <code>/create add "&lt;内容&gt;"</code>
+            <code>/create add &quot;&lt;内容&gt;&quot;</code> {/* 修正 */}
             <ul>
               <li>通常のテキスト型メモを追加します。</li>
-              <li>例: <code>/create add "牛乳を買う"</code></li>
+              <li>例: <code>/create add &quot;牛乳を買う&quot;</code></li> {/* 修正 */}
             </ul>
           </li>
           <li>
-            <code>/create add checklist "&lt;内容&gt;"</code>
+            <code>/create add checklist &quot;&lt;内容&gt;&quot;</code> {/* 修正 */}
             <ul>
               <li>チェックボックス付きのチェックリスト型メモを追加します。</li>
-              <li>例: <code>/create add checklist "部屋を掃除する"</code></li>
+              <li>例: <code>/create add checklist &quot;部屋を掃除する&quot;</code></li> {/* 修正 */}
             </ul>
           </li>
         </ul>
-        <p>※ どちらもIDは自動で4桁連番（例: "0001"）となります。</p>
+        <p>※ どちらもIDは自動で4桁連番（例: 0001）となります。</p>
 
         <h4>● メモの編集</h4>
-        <p><code>/create edit &lt;メモID&gt; "&lt;新しい内容&gt;"</code></p>
+        <p><code>/create edit &lt;メモID&gt; &quot;&lt;新しい内容&gt;&quot;</code></p> {/* 修正 */}
         <ul>
           <li>指定したIDのメモ内容を上書きします。</li>
-          <li>例: <code>/create edit 0001 "パンも買う"</code></li>
+          <li>例: <code>/create edit 0001 &quot;パンも買う&quot;</code></li> {/* 修正 */}
         </ul>
 
         <h4>● メモの削除</h4>
@@ -60,20 +60,21 @@ export default function HowTo() {
         <p>自作コマンド（＝コマンド文のテンプレート）を管理できます。</p>
 
         <h4>● 自作コマンドの追加</h4>
-        <p><code>/command add &lt;コマンド名&gt; "&lt;コマンド内容&gt;"</code></p>
+        <p><code>/command add &lt;コマンド名&gt; &quot;&lt;コマンド内容&gt;&quot;</code></p>
         <ul>
           <li>新しい自作コマンドを追加します。</li>
+          <li>コマンド名には半角英数字とハイフン(<code>-</code>)、アンダースコア(<code>_</code>)が使えます。</li>
           <li>例:<br />
-            <code>/command add greet "echo Hello"</code><br />
-            <code>/command add todo "create add daily $1 checklist \"$2\""</code>
+            <code>/command add greet &quot;echo Hello World&quot;</code><br />
+            <code>/command add todo &quot;/create add \&quot;今日のタスク: $1\&quot;&quot;</code>
           </li>
         </ul>
 
         <h4>● 自作コマンドの編集</h4>
-        <p><code>/command edit &lt;コマンド名&gt; "&lt;新しいコマンド内容&gt;"</code></p>
+        <p><code>/command edit &lt;コマンド名&gt; &quot;&lt;新しいコマンド内容&gt;&quot;</code></p>
         <ul>
           <li>登録済みの自作コマンドの内容を編集します。</li>
-          <li>例: <code>/command edit greet "echo Hi"</code></li>
+          <li>例: <code>/command edit greet &quot;echo Hi there&quot;</code></li>
         </ul>
 
         <h4>● 自作コマンドの削除</h4>
@@ -100,7 +101,7 @@ export default function HowTo() {
       <section className="howto-section">
         <h3>3. チェックリスト機能について</h3>
         <ul>
-          <li>チェックリスト型メモは追加時に <code>/create add checklist "&lt;内容&gt;"</code> で登録できます。</li>
+          <li>チェックリスト型メモは追加時に <code>/create add checklist &quot;&lt;内容&gt;&quot;</code> で登録できます。</li> {/* 修正 */}
           <li>チェック状態は <code>/create checklist &lt;メモID&gt;</code> で切り替えます。</li>
           <li>チェックリスト型メモはリスト表示時にチェックボックスが表示されます（UIによる）。</li>
         </ul>
@@ -109,7 +110,7 @@ export default function HowTo() {
       <section className="howto-section">
         <h3>4. 注意事項・ヒント</h3>
         <ul>
-          <li>メモIDは常に4桁（"0001", "0002" ...）です。編集・削除・チェック切替はIDで指定してください。</li>
+          <li>メモIDは常に4桁（0001, 0002 ...）です。編集・削除・チェック切替はIDで指定してください。</li>
           <li>入力は<strong>必ず半角英数字</strong>で行ってください。</li>
           {/* <li>未対応のコマンドや記法エラー時はエラーメッセージが表示されます。</li>
           <li>新しい自作コマンドを登録することで、複雑な操作を効率化できます。</li> */}
@@ -119,10 +120,10 @@ export default function HowTo() {
       <section className="howto-section">
         <h3>5. よくあるエラー例</h3>
         <ul>
-          <li><code>/create edit 1 "内容"</code> &rarr; <strong>NG!</strong><br />
-            &rarr; 正しくは <code>/create edit 0001 "内容"</code></li>
-          {/* <li><code>/command add greet echo Hello</code> &rarr; <strong>NG!</strong><br />
-            &rarr; 正しくは <code>/command add greet "echo Hello"</code></li> */}
+          <li><code>/create edit 1 &quot;内容&quot;</code> &rarr; <strong>NG!</strong><br /> {/* 修正 */}
+            &rarr; 正しくは <code>/create edit 0001 &quot;内容&quot;</code></li> {/* 修正 */}
+          <li><code>/command add greet echo Hello</code> &rarr; <strong>NG!</strong><br />
+            &rarr; 正しくは <code>/command add greet &quot;echo Hello&quot;</code></li> {/* 修正 */}
           <li><code>/create checklist 0001</code> &rarr; テキスト型メモには使えません（チェックリスト型のみ）</li>
         </ul>
       </section>
