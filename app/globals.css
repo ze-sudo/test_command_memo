@@ -1,0 +1,178 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* CSS スタイル */
+.command-input-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 8px;
+  background-color: #fafafa;
+  border-top: 1px solid #ddd;
+  z-index: 1000; /* 他の要素より手前に表示 */
+}
+
+.command-input-bar input[type="text"] {
+  width: 100%;
+  font-size: 18px; /* 元のスタイルを維持 */
+  padding: 8px;    /* 元のスタイルを維持 */
+  border: 1px solid #ccc; /* 必要に応じて調整 */
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.memo-list {
+  list-style: none;
+  padding: 0;
+  margin: 0; /*  親要素の container の padding を活かす */
+}
+
+.memo-list li {
+  background-color: #fff;
+  border: 1px solid #eee;
+  padding: 10px 15px;
+  margin-bottom: 8px;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  display: flex; /*  IDと内容を横並びにする場合など、将来的な拡張のため */
+  justify-content: space-between; /*  IDと内容を横並びにする場合など */
+  align-items: center; /*  IDと内容を横並びにする場合など */
+}
+
+.memo-list .memo-id {
+  font-size: 0.8em;
+  color: #777;
+  margin-right: 10px; /* 内容との間隔 */
+}
+
+.memo-list .memo-content {
+  flex-grow: 1; /* 内容が残りのスペースを埋めるように */
+}
+
+.no-memos {
+  color: #777;
+  text-align: center;
+  padding: 20px;
+}
+
+/* Header Styles */
+.site-header {
+  background-color: #2c3e50; /* ダークブルー系の背景色 */
+  color: #ecf0f1; /* 明るいグレー系の文字色 */
+  padding: 1rem 0;
+  border-bottom: 3px solid #3498db; /* 明るいブルーのアクセントボーダー */
+  margin-bottom: 20px; /* ヘッダーとメインコンテンツの間に余白 */
+}
+
+.site-header .header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* container クラスの max-width と margin: auto を継承 */
+}
+
+.site-header .site-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #ecf0f1;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.site-header .site-title:hover {
+  color: #3498db; /* ホバー時にアクセントカラーに */
+}
+
+.site-header nav a {
+  color: #ecf0f1;
+  text-decoration: none;
+  margin-left: 1.5rem;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.site-header nav a:hover {
+  color: #3498db; /* ホバー時にアクセントカラーに */
+}
+
+/* HowTo Page Styles */
+.howto-section {
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #eee;
+}
+
+.howto-section:last-of-type {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.howto-section h3 {
+  font-size: 1.5rem;
+  color: #2c3e50; /* ダークブルー系 */
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #3498db; /* 明るいブルーのアクセント */
+}
+
+.howto-section h4 {
+  font-size: 1.2rem;
+  color: #34495e; /* やや暗いブルーグレー */
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.howto-section p {
+  margin-bottom: 0.75rem;
+  line-height: 1.7;
+}
+
+.howto-section ul {
+  list-style: disc;
+  margin-left: 20px;
+  margin-bottom: 1rem;
+}
+
+.howto-section ul li {
+  margin-bottom: 0.5rem;
+}
+
+.howto-section code {
+  background-color: #e8f0f2; /* 明るいグレーブルーの背景 */
+  padding: 0.2em 0.4em;
+  margin: 0 0.2em;
+  font-size: 0.9em;
+  border-radius: 3px;
+  color: #2c3e50;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier,
+    monospace;
+}
+
+.howto-section strong {
+  color: #c0392b; /* エラーや注意喚起のための赤系 */
+}
